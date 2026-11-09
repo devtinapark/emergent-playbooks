@@ -1,0 +1,7 @@
+source,year,finding,python_signal,javascript_signal,notes
+Stack Overflow Developer Survey,2024,JavaScript most popular language (12th consecutive year),secondary (fast-growing),primary (dominant),Python grew 7pp 2024-2025; JS still #1 overall
+Stack Overflow Developer Survey,2025,Python becoming go-to for AI/data science/backend,primary for AI workloads,primary for web/full-stack,"Python +7pp; strongest growth driver is AI adoption; JS TypeScript React Node.js dominate full-stack"
+Job market analysis (August 2025),2025,Demand strongest for JS/TS/React/Node.js + Python for AI-adjacent roles,strong for AI/ML/backend API,dominant for web/full-stack,"Mid-market SWE roles: front-end/full-stack → JS-first; data/AI/backend → Python-first"
+AI SDK downloads (April 2026),2026,"Python ~70% of AI SDK downloads; JavaScript ~30%; ratio stable",70%,30%,"Source: What Package Downloads Reveal About Developer Adoption (Apr 2026); ratio holds for document AI specifically"
+Document AI tutorials/examples,2024-2026,Google Document AI tutorials primarily Python; Node.js secondary,primary in tutorials,secondary (exists),"Google Cloud Doc AI, AWS Textract all ship Python-first SDKs; Node.js SDKs exist but less documented"
+Mid-market full-stack developer profile,2024-2025,"Full-stack engineers at 50-500 person companies: React/Node.js front+backend; Python for data/AI scripts",secondary (AI integrations),primary (app layer),"The developer integrating document AI into a product is typically JS-first writing a Node.js backend or React app calling an API"

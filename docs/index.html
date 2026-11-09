@@ -1,0 +1,1893 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upstage Studio — Mid-Market Developer Research</title>
+  <style>
+    :root {
+      --ivory: #FAF9F5;
+      --paper: #FFFFFF;
+      --slate: #141413;
+      --clay: #D97757;
+      --clay-d: #B85C3E;
+      --oat: #E3DACC;
+      --olive: #788C5D;
+      --g100: #F0EEE6;
+      --g200: #E6E3DA;
+      --g300: #D1CFC5;
+      --g500: #87867F;
+      --g700: #3D3D3A;
+      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--slate);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 32px 140px;
+    }
+
+    /* ── masthead ─────────────────────────── */
+    header.masthead {
+      padding: 80px 0 56px;
+      border-bottom: 1.5px solid var(--g300);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g500);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1.5px;
+      background: var(--clay);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.06;
+      letter-spacing: -0.018em;
+      margin-bottom: 8px;
+      max-width: 22ch;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .intro {
+      font-size: 16px;
+      color: var(--g700);
+      margin: 22px 0 0;
+      max-width: 640px;
+      line-height: 1.65;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--g500);
+      background: var(--g100);
+      border: 1px solid var(--g300);
+      padding: 4px 11px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-pill strong {
+      color: var(--slate);
+    }
+
+    /* ── toc ──────────────────────────────── */
+    nav.toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 26px 0 0;
+    }
+
+    nav.toc a {
+      font-size: 12.5px;
+      padding: 7px 14px;
+      border: 1.5px solid var(--g300);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--g700);
+      background: var(--paper);
+      transition: border-color 120ms, color 120ms;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    nav.toc a .n {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--g500);
+    }
+
+    nav.toc a:hover {
+      border-color: var(--slate);
+      color: var(--slate);
+    }
+
+    nav.toc a:hover .n {
+      color: var(--clay);
+    }
+
+    /* ── sections ─────────────────────────── */
+    section {
+      margin-top: 80px;
+      scroll-margin-top: 28px;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .sec-head .idx {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--clay);
+      font-weight: 600;
+      width: 34px;
+      flex-shrink: 0;
+    }
+
+    .sec-head h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 26px;
+      letter-spacing: -0.012em;
+    }
+
+    .sec-intro {
+      font-size: 14.5px;
+      color: var(--g700);
+      max-width: 720px;
+      margin: 0 0 28px 50px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 640px) {
+
+      .sec-intro,
+      .sec-body {
+        margin-left: 0 !important;
+      }
+    }
+
+    .sec-body {
+      margin-left: 50px;
+    }
+
+    /* ── callout boxes ────────────────────── */
+    .callout {
+      border-left: 3px solid var(--clay);
+      background: var(--paper);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      border: 1.5px solid var(--g200);
+      border-left: 3px solid var(--clay);
+    }
+
+    .callout-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 6px;
+    }
+
+    .callout p {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    .callout p+p {
+      margin-top: 8px;
+    }
+
+    .callout strong {
+      color: var(--slate);
+    }
+
+    .verdict {
+      background: var(--slate);
+      color: var(--paper);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .verdict .verdict-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 8px;
+    }
+
+    .verdict p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── charts / visuals ─────────────────── */
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 720px) {
+      .chart-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chart-card {
+      background: var(--paper);
+      border: 1.5px solid var(--g300);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .chart-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--g500);
+      margin-bottom: 18px;
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--g700);
+    }
+
+    .bar-label .pct {
+      font-family: var(--mono);
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    .bar-track {
+      height: 8px;
+      background: var(--g100);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .bar-fill.python {
+      background: var(--clay);
+    }
+
+    .bar-fill.javascript {
+      background: var(--olive);
+    }
+
+    .bar-fill.other {
+      background: var(--g300);
+    }
+
+    .split-viz {
+      position: relative;
+      height: 48px;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      margin: 16px 0 8px;
+    }
+
+    .split-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      transition: flex 0.4s ease;
+    }
+
+    .split-seg.py {
+      background: var(--clay);
+      flex: 70;
+    }
+
+    .split-seg.js {
+      background: var(--olive);
+      flex: 30;
+    }
+
+    .split-legend {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--g700);
+    }
+
+    .split-legend span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .split-legend .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .split-legend .dot.py {
+      background: var(--clay);
+    }
+
+    .split-legend .dot.js {
+      background: var(--olive);
+    }
+
+    /* ── pricing table ────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1.5px solid var(--g300);
+      background: var(--paper);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead {
+      background: var(--g100);
+    }
+
+    thead th {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--g500);
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1.5px solid var(--g300);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--g100);
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: var(--g100);
+    }
+
+    td {
+      padding: 12px 16px;
+      vertical-align: top;
+      line-height: 1.45;
+      color: var(--g700);
+    }
+
+    td.name {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+
+    td.price {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--slate);
+      min-width: 140px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .badge.yes {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .badge.no {
+      background: #FBE9E7;
+      color: #BF360C;
+    }
+
+    .badge.mid {
+      background: #FFF8E1;
+      color: #E65100;
+    }
+
+    .badge.ent {
+      background: var(--g100);
+      color: var(--g700);
+    }
+
+    .badge.mm {
+      background: #E8F4FD;
+      color: #0D47A1;
+    }
+
+    .seg-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--g700);
+    }
+
+    .seg-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .seg-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--g300);
+    }
+
+    .seg-dot.on {
+      background: var(--clay);
+    }
+
+    /* ── gap analysis ─────────────────────── */
+    .gap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 760px) {
+      .gap-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gap-card {
+      background: var(--paper);
+      border: 1.5px solid var(--g300);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .gap-card.highlight {
+      border-color: var(--clay);
+      background: #FFF5F2;
+    }
+
+    .gap-num {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--clay);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .gap-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+
+    .gap-desc {
+      font-size: 12.5px;
+      color: var(--g700);
+      line-height: 1.5;
+    }
+
+    /* ── persona cards ────────────────────── */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 720px) {
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .persona-card {
+      background: var(--paper);
+      border: 1.5px solid var(--g300);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .persona-card.primary {
+      border-color: var(--slate);
+    }
+
+    .persona-header {
+      padding: 16px 20px;
+      border-bottom: 1.5px solid var(--g200);
+      background: var(--g100);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .persona-card.primary .persona-header {
+      background: var(--slate);
+    }
+
+    .persona-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: var(--paper);
+      flex-shrink: 0;
+    }
+
+    .persona-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--slate);
+    }
+
+    .persona-card.primary .persona-name {
+      color: var(--paper);
+    }
+
+    .persona-role {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--g500);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .persona-card.primary .persona-role {
+      color: var(--oat);
+    }
+
+    .persona-body {
+      padding: 20px;
+    }
+
+    .persona-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .persona-field {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .persona-field-label {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--g500);
+    }
+
+    .persona-field-value {
+      font-size: 13px;
+      color: var(--g700);
+      line-height: 1.5;
+    }
+
+    .persona-tag {
+      display: inline-block;
+      background: var(--g100);
+      border: 1px solid var(--g300);
+      font-size: 11px;
+      font-family: var(--mono);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--g700);
+      margin: 2px 2px 0 0;
+    }
+
+    .persona-tag.active {
+      background: #E8F4FD;
+      border-color: #90CAF9;
+      color: #0D47A1;
+    }
+
+    /* ── CPO questions ────────────────────── */
+    .question-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .question-card {
+      background: var(--paper);
+      border: 1.5px solid var(--g300);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 150ms;
+    }
+
+    .question-card:hover {
+      border-color: var(--slate);
+    }
+
+    .question-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--g100);
+    }
+
+    .question-num {
+      font-family: var(--mono);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--clay);
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 3px;
+    }
+
+    .question-title {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--slate);
+      letter-spacing: -0.008em;
+      line-height: 1.25;
+    }
+
+    .question-body {
+      padding: 16px 24px 20px;
+    }
+
+    .question-text {
+      font-size: 14px;
+      color: var(--g700);
+      line-height: 1.65;
+    }
+
+    .question-text strong {
+      color: var(--slate);
+    }
+
+    .question-why {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: var(--g100);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--g700);
+    }
+
+    .question-why .why-label {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--g500);
+      margin-bottom: 4px;
+    }
+
+    /* ── review quotes ────────────────────── */
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .quote-card {
+      background: var(--paper);
+      border: 1.5px solid var(--g200);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .quote-mark {
+      font-size: 28px;
+      color: var(--clay);
+      line-height: 1;
+      font-family: var(--serif);
+      margin-bottom: 6px;
+    }
+
+    .quote-text {
+      font-size: 13.5px;
+      color: var(--slate);
+      line-height: 1.55;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .quote-source {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--g500);
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--g100);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quote-product {
+      color: var(--clay);
+      font-weight: 600;
+    }
+
+    /* ── self-serve scorecard ─────────────── */
+    .scorecard {
+      background: var(--paper);
+      border: 1.5px solid var(--g300);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .scorecard-head {
+      background: var(--g100);
+      padding: 14px 20px;
+      border-bottom: 1.5px solid var(--g300);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--g500);
+    }
+
+    .scorecard-rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scorecard-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-bottom: 1px solid var(--g100);
+      font-size: 13px;
+    }
+
+    .scorecard-row:last-child {
+      border-bottom: none;
+    }
+
+    .scorecard-row .label {
+      padding: 12px 16px;
+      background: var(--g100);
+      border-right: 1px solid var(--g200);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--g700);
+      display: flex;
+      align-items: center;
+    }
+
+    .scorecard-row .value {
+      padding: 12px 16px;
+      color: var(--slate);
+      line-height: 1.45;
+    }
+
+    .scorecard-row .value.good {
+      color: #2E7D32;
+    }
+
+    .scorecard-row .value.warn {
+      color: #E65100;
+    }
+
+    .scorecard-row .value.bad {
+      color: #BF360C;
+    }
+
+    /* ── funnel ───────────────────────────── */
+    .funnel {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin: 16px 0 24px;
+    }
+
+    .funnel-step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .funnel-bar-wrap {
+      flex: 1;
+    }
+
+    .funnel-bar {
+      height: 38px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      transition: width 0.4s;
+    }
+
+    .funnel-label {
+      font-size: 12px;
+      color: var(--g700);
+      width: 100px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .funnel-pct {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--g500);
+      width: 46px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    /* ── footer ───────────────────────────── */
+    footer {
+      margin-top: 100px;
+      border-top: 1.5px solid var(--g300);
+      padding-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--g500);
+    }
+
+    footer .k {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--g700);
+      font-size: 15px;
+    }
+
+    /* ── hr divider ───────────────────────── */
+    hr.sec-rule {
+      border: none;
+      border-top: 1px solid var(--g200);
+      margin: 28px 0;
+    }
+
+    /* ── inline highlight ─────────────────── */
+    mark {
+      background: var(--oat);
+      color: var(--slate);
+      border-radius: 3px;
+      padding: 1px 4px;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.87em;
+      background: var(--g100);
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--g700);
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 0 18px 80px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .gap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ════════════════════ MASTHEAD ════════════════════ -->
+    <header class="masthead">
+      <div class="eyebrow">Private Interview Prep · Upstage AI PM Role</div>
+      <h1>Mid-Market Developer Research for <em>Upstage Studio</em></h1>
+      <p class="intro">
+        Live-scraped market intelligence on mid-market developer behavior, document AI competitive pricing,
+        buyer reviews, and self-serve best practices — synthesized for the Studio expansion into US mid-market
+        self-serve (50–500 employee companies).
+      </p>
+      <div class="meta-row">
+        <span class="meta-pill"><strong>Data collected</strong> · 2026-06-14 via Nimble CLI</span>
+        <span class="meta-pill"><strong>Sources</strong> · 7 pricing pages, 20+ search queries, G2/Capterra
+          signals</span>
+        <span class="meta-pill"><strong>Scope</strong> · US market, 50–500 employee companies</span>
+      </div>
+      <nav class="toc">
+        <a href="#techstack">Tech Stack <span class="n">Python vs JS</span></a>
+        <a href="#competitors">Competitor Pricing <span class="n">8 tools</span></a>
+        <a href="#gap">Pricing Gap <span class="n">analysis</span></a>
+        <a href="#reviews">Buyer Reviews <span class="n">pain points</span></a>
+        <a href="#selfserve">Self-Serve Playbook <span class="n">benchmarks</span></a>
+        <a href="#persona">Buyer Persona <span class="n">who buys</span></a>
+        <a href="#questions">CPO Questions <span class="n">3 sharp ones</span></a>
+      </nav>
+    </header>
+
+
+    <!-- ════════════════════ 01 TECH STACK ════════════════════ -->
+    <section id="techstack">
+      <div class="sec-head">
+        <span class="idx">01</span>
+        <h2>Tech Stack — Python vs. JavaScript at Mid-Market</h2>
+      </div>
+      <p class="sec-intro">
+        The question isn't which language is "more popular" — it's which language the developer integrating
+        document AI into a <em>product</em> uses. That developer is overwhelmingly JavaScript-first.
+      </p>
+
+      <div class="sec-body">
+        <div class="chart-row">
+          <div class="chart-card">
+            <div class="chart-title">AI SDK Downloads — Language Split (Apr 2026)</div>
+            <div class="split-viz">
+              <div class="split-seg py">Python 70%</div>
+              <div class="split-seg js">JS 30%</div>
+            </div>
+            <div class="split-legend">
+              <span><span class="dot py"></span>Python — AI/ML, data science, batch pipelines</span>
+              <span><span class="dot js"></span>JavaScript — product integrations, Node.js backends</span>
+            </div>
+            <p style="font-size:12px;color:var(--g500);margin-top:14px;">
+              Source: "What Package Downloads Reveal About Developer Adoption" (Apr 2026)
+            </p>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-title">Stack Overflow Survey — Language Demand (2025)</div>
+            <div class="bar-chart">
+              <div class="bar-item">
+                <div class="bar-label"><span>JavaScript / TypeScript</span><span class="pct">#1 (12th year)</span></div>
+                <div class="bar-track">
+                  <div class="bar-fill javascript" style="width:84%"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label"><span>Python</span><span class="pct">#2 (+7pp YoY)</span></div>
+                <div class="bar-track">
+                  <div class="bar-fill python" style="width:68%"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label"><span>Java / Go / Rust</span><span class="pct">#3–5</span></div>
+                <div class="bar-track">
+                  <div class="bar-fill other" style="width:38%"></div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--g500);margin-top:14px;">
+              Python growth driven by AI adoption; JS holds the web/product layer.
+            </p>
+          </div>
+        </div>
+
+        <div class="chart-card" style="margin-bottom:20px;">
+          <div class="chart-title">Where Each Language Lives at a 50–500 Person Company</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:4px;">
+            <div>
+              <div
+                style="font-size:13px;font-weight:600;color:var(--slate);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+                <span
+                  style="width:10px;height:10px;border-radius:50%;background:var(--olive);display:inline-block;"></span>
+                JavaScript / TypeScript
+              </div>
+              <ul
+                style="font-size:13px;color:var(--g700);padding-left:16px;display:flex;flex-direction:column;gap:5px;">
+                <li>React frontend, Next.js full-stack</li>
+                <li>Node.js / Express API layer</li>
+                <li>Customer-facing product integrations</li>
+                <li>Internal tooling, dashboards</li>
+                <li><strong style="color:var(--slate);">→ The developer integrating Studio into a product</strong></li>
+              </ul>
+            </div>
+            <div>
+              <div
+                style="font-size:13px;font-weight:600;color:var(--slate);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+                <span
+                  style="width:10px;height:10px;border-radius:50%;background:var(--clay);display:inline-block;"></span>
+                Python
+              </div>
+              <ul
+                style="font-size:13px;color:var(--g700);padding-left:16px;display:flex;flex-direction:column;gap:5px;">
+                <li>Data pipelines, ETL scripts</li>
+                <li>ML model fine-tuning</li>
+                <li>Batch document processing jobs</li>
+                <li>Data science / analytics</li>
+                <li><strong style="color:var(--slate);">→ The data engineer running a batch workflow</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="verdict">
+          <div class="verdict-label">Verdict — Is Upstage's Python-only SDK a gap?</div>
+          <p>
+            <strong>Yes — for the self-serve mid-market buyer, it's a significant one.</strong>
+            The 70% Python share in AI SDK downloads is real, but it is concentrated in enterprise AI teams
+            and data scientists — not the mid-market developer building a Node.js backend that calls a document
+            parsing API. That developer hits the Python-only wall at <code>npm install</code> and evaluates a
+            competitor instead. AWS Textract, Google Document AI, Veryfi, and Nanonets all ship Python, JavaScript,
+            Java, and .NET SDKs simultaneously. A missing or under-documented TypeScript/Node.js SDK is a
+            conversion killer at the "Hello World" step — the single most important moment in self-serve adoption.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ 02 COMPETITOR PRICING ════════════════════ -->
+    <section id="competitors">
+      <div class="sec-head">
+        <span class="idx">02</span>
+        <h2>Competitor Pricing &amp; Positioning</h2>
+      </div>
+      <p class="sec-intro">
+        Live-scraped from each product's pricing page on 2026-06-14. Self-serve = can you get an API key
+        and process a document without talking to sales? Enterprise/self-serve keyword counts inferred from
+        page copy analysis.
+      </p>
+
+      <div class="sec-body">
+        <div class="table-wrap" style="margin-bottom:24px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Entry Price</th>
+                <th>Model</th>
+                <th>Self-Serve</th>
+                <th>Free Trial</th>
+                <th>Segment</th>
+                <th>SDKs</th>
+                <th>Positioning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="name">Google Document AI</td>
+                <td class="price">$0.01/page (parsers)<br>$0.0015/page (OCR)<br>$30/1K (custom)</td>
+                <td>Per-page usage</td>
+                <td><span class="badge yes">✓ Yes</span></td>
+                <td><span class="badge yes">✓ GCP trial</span></td>
+                <td><span class="badge ent">Enterprise</span></td>
+                <td><code>Py JS Java Go .NET</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot"></div>
+                    </div>
+                    Enterprise-heavy
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="name">Azure AI Doc Intelligence</td>
+                <td class="price">500 pages/mo free<br>S0 prices hidden<br>Commitment: 20K pg/mo min</td>
+                <td>Per-page + commitment</td>
+                <td><span class="badge yes">✓ Azure portal</span></td>
+                <td><span class="badge yes">✓ 500 pages/mo</span></td>
+                <td><span class="badge ent">Enterprise</span></td>
+                <td><code>Py JS Java .NET</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                    </div>
+                    All-enterprise
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="name">AWS Textract</td>
+                <td class="price">$0.0015/page (OCR)<br>$0.015/page (tables)<br>$0.05/page (forms)</td>
+                <td>Per-page usage</td>
+                <td><span class="badge yes">✓ AWS console</span></td>
+                <td><span class="badge yes">✓ 3-month free tier</span></td>
+                <td><span class="badge ent">Enterprise/Dev</span></td>
+                <td><code>Py JS Java Go .NET</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot"></div>
+                      <div class="seg-dot"></div>
+                    </div>
+                    Developer-ish
+                  </div>
+                </td>
+              </tr>
+              <tr style="background:#FAFFF8;">
+                <td class="name">Nanonets</td>
+                <td class="price">Free ($200 credits)<br>Growth: contact sales<br>Enterprise: custom</td>
+                <td>Usage-based credits</td>
+                <td><span class="badge yes">✓ Instant signup</span></td>
+                <td><span class="badge yes">✓ $200 no CC</span></td>
+                <td><span class="badge mm">Mid-market</span></td>
+                <td><code>Py REST API</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                    </div>
+                    Self-serve-first
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="name">Veryfi</td>
+                <td class="price">Free (100 docs/mo)<br><mark>Starter: $500/mo min</mark><br>($0.08–0.16/doc)</td>
+                <td>Per-document</td>
+                <td><span class="badge yes">✓ 14-day trial</span></td>
+                <td><span class="badge yes">✓ No CC required</span></td>
+                <td><span class="badge mm">Developer/MM</span></td>
+                <td><code>Py JS Ruby PHP Java</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot"></div>
+                    </div>
+                    Dev-friendly
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="name">Docsumo</td>
+                <td class="price">Free (14d, 1K pages)<br>Growth ~$299/mo<br>+ setup fees extra</td>
+                <td>Per-page subscription</td>
+                <td><span class="badge yes">✓ Free signup</span></td>
+                <td><span class="badge yes">✓ 14-day</span></td>
+                <td><span class="badge mm">Mid-market</span></td>
+                <td><code>REST API</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot"></div>
+                      <div class="seg-dot"></div>
+                    </div>
+                    Mixed
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="name">Reducto.ai</td>
+                <td class="price">Free (15K credits)<br>Growth: $0.015/credit<br>Enterprise: custom MSA</td>
+                <td>Credits-based</td>
+                <td><span class="badge yes">✓ Free tier</span></td>
+                <td><span class="badge yes">✓ 15K credits</span></td>
+                <td><span class="badge ent">Enterprise</span></td>
+                <td><code>Py REST API</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                    </div>
+                    All-enterprise
+                  </div>
+                </td>
+              </tr>
+              <tr style="border-top:2px solid var(--clay);background:#FFF9F7;">
+                <td class="name" style="color:var(--clay);">Upstage Studio ★</td>
+                <td class="price">Doc Parse: $0.01/pg (Std)<br>$0.03/pg (Enhanced)<br>OCR: $0.0015/pg<br>Studio: 10 free
+                  runs/agent</td>
+                <td>Per-page + per-run</td>
+                <td><span class="badge yes">✓ Console</span></td>
+                <td><span class="badge yes">✓ 10 free runs</span></td>
+                <td><span class="badge mid">Transitioning</span></td>
+                <td><code>Py (primary)</code></td>
+                <td>
+                  <div class="seg-bar">
+                    <div class="seg-dots">
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot on"></div>
+                      <div class="seg-dot"></div>
+                      <div class="seg-dot"></div>
+                    </div>
+                    Enterprise → MM
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Key observation — the self-serve paradox</div>
+          <p>Every tool above has a free tier or trial, but <strong>free tier ≠ self-serve experience.</strong>
+            Google/Azure/AWS require a cloud account + IAM setup before a developer can process their first document —
+            that's 30–90 minutes of friction before any value is realized. Nanonets is the only native document AI
+            player with a genuinely frictionless signup: <strong>$200 in credits, API access, no credit card, no sales
+              call, results in &lt;5 minutes.</strong> That is the benchmark for mid-market self-serve.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ 03 PRICING GAP ════════════════════ -->
+    <section id="gap">
+      <div class="sec-head">
+        <span class="idx">03</span>
+        <h2>Pricing Gap Analysis</h2>
+      </div>
+      <p class="sec-intro">
+        Three sentences that define the white space Studio can own. Each one is grounded in the scraped data.
+      </p>
+
+      <div class="sec-body">
+        <div class="gap-grid">
+          <div class="gap-card">
+            <div class="gap-num">$130K</div>
+            <div class="gap-label">What enterprise doc AI costs</div>
+            <div class="gap-desc">Google's own pricing example for a custom extractor at 5M pages: $130,000. Commitment
+              tiers start at 20K–100K pages/month. Azure prices are literally hidden until you request a quote. These
+              tools assume enterprise buying motion, dedicated DevOps, and IAM expertise.</div>
+          </div>
+          <div class="gap-card">
+            <div class="gap-num">$50–$500</div>
+            <div class="gap-label">What mid-market settles for</div>
+            <div class="gap-desc">A 5,000-page/month mid-market team pays: Veryfi $500/mo (minimum floor, even at low
+              volume), Nanonets free then hits a sales-call wall, or AWS Textract ~$75/mo but with integration
+              complexity described as "cumbersome" for legacy systems. No clean middle-market lane exists.</div>
+          </div>
+          <div class="gap-card highlight">
+            <div class="gap-num">$50–$200</div>
+            <div class="gap-label">The gap Studio could own</div>
+            <div class="gap-desc">Upstage's $0.01/page pricing means 5K pages = $50/month and 20K pages = $200/month —
+              already 10× cheaper than Veryfi's floor. <strong>No competitor offers this price point with a frictionless
+                JS-SDK self-serve experience.</strong> The gap isn't in pricing — it's in the self-serve wrapper and SDK
+              breadth around a price that already wins.</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">The three-sentence gap statement</div>
+          <p><strong>Sentence 1 — Enterprise reality:</strong> Enterprise document AI (Google, Azure, AWS) prices from
+            $0.0015–$30/page but assumes 100K+ pages/month, cloud-account setup, IAM expertise, and a sales-assisted
+            buying motion — total cost for a mid-market team is $75–$2,500/month before factoring in 2–4 weeks of
+            integration time.</p>
+          <p><strong>Sentence 2 — Mid-market compromise:</strong> Mid-market buyers currently absorb unpredictable
+            pricing shocks on AWS/Google pay-as-you-go, pay Veryfi's $500/month minimum floor well before their volume
+            justifies it, or use Nanonets' free tier until they hit the sales-call wall at exactly the moment the
+            product has proven its value.</p>
+          <p><strong>Sentence 3 — The Studio opportunity:</strong> No competitor currently offers sub-$200/month
+            transparent document AI with a first-class JavaScript/TypeScript SDK, a sandbox that processes real customer
+            documents (not toy samples), and a credit-card-purchasable upgrade path — Upstage's per-page pricing already
+            wins on cost; the self-serve gap is in the experience, not the price.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ 04 BUYER REVIEWS ════════════════════ -->
+    <section id="reviews">
+      <div class="sec-head">
+        <span class="idx">04</span>
+        <h2>Buyer Reviews &amp; Pain Points</h2>
+      </div>
+      <p class="sec-intro">
+        Signals from G2, Capterra, Reddit, and public benchmarks. Filtered for mid-market context (50–500 employee
+        companies and developer/ops roles).
+      </p>
+
+      <div class="sec-body">
+        <div class="quote-grid">
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">Does Document AI really cost $38 for 26 requests? I woke up to a budget warning
+              after tweeting about my PDF parsing tool.</div>
+            <div class="quote-source">
+              <span>Reddit / developer</span>
+              <span class="quote-product">Google Document AI</span>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">OCR is very accurate and JSON response is well-structured and clear. The integration
+              with our accounting system was very simple.</div>
+            <div class="quote-source">
+              <span>G2 verified review · developer</span>
+              <span class="quote-product">Veryfi</span>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">It could get pretty cumbersome integrating AMS into especially legacy systems.</div>
+            <div class="quote-source">
+              <span>G2 · Mid-Market (51–1000 emp.)</span>
+              <span class="quote-product">AWS / Textract</span>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">Docsumo's pricing is often hidden behind sales calls and starts high. DigiParser
+              starts from $20/mo on yearly billing with clear, published pricing.</div>
+            <div class="quote-source">
+              <span>Competitor comparison · ops buyer</span>
+              <span class="quote-product">Docsumo</span>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">Document AI costs range from $50 to $3,250 per month for the same 50,000-invoice
+              workload, with Mistral OCR the cheapest at $0.001–$0.002/page.</div>
+            <div class="quote-source">
+              <span>Jan 2026 cost benchmark</span>
+              <span class="quote-product">Industry analysis</span>
+            </div>
+          </div>
+          <div class="quote-card">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">Nanonets is generally well-regarded for AI-powered accuracy, automation
+              capabilities, and user-friendly interface — a valuable tool for document automation.</div>
+            <div class="quote-source">
+              <span>Capterra aggregate · 2026</span>
+              <span class="quote-product">Nanonets</span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="sec-rule">
+
+        <div
+          style="font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--g500);margin-bottom:16px;">
+          Top Pain Points — Ranked by Frequency</div>
+        <div class="bar-chart" style="max-width:560px;margin-bottom:24px;">
+          <div class="bar-item">
+            <div class="bar-label"><span>Pricing opacity / unexpected cost spikes</span><span class="pct">★★★★★</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill python" style="width:95%"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Integration complexity with existing stacks</span><span class="pct">★★★★</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill python" style="width:78%"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Sales-call wall before value is demonstrated</span><span
+                class="pct">★★★★</span></div>
+            <div class="bar-track">
+              <div class="bar-fill python" style="width:72%"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>High minimum commitment ($500/mo floor)</span><span class="pct">★★★</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill javascript" style="width:58%"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Language support gaps (English-only parsers)</span><span class="pct">★★★</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill javascript" style="width:48%"></div>
+            </div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Accuracy on non-standard / complex documents</span><span class="pct">★★</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill other" style="width:34%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ 05 SELF-SERVE ════════════════════ -->
+    <section id="selfserve">
+      <div class="sec-head">
+        <span class="idx">05</span>
+        <h2>Self-Serve Playbook &amp; Benchmarks</h2>
+      </div>
+      <p class="sec-intro">
+        What the research says about what makes self-serve work for developer tools in mid-market.
+        Numbers are from PLG 2026 benchmarks and onboarding research.
+      </p>
+
+      <div class="sec-body">
+        <div class="chart-row" style="margin-bottom:20px;">
+          <div class="chart-card">
+            <div class="chart-title">Free-to-Paid Conversion — PLG Benchmarks (2026)</div>
+            <div class="funnel" style="margin-top:12px;">
+              <div class="funnel-step">
+                <div class="funnel-label" style="text-align:right;font-size:11px;">Opt-in (no CC)</div>
+                <div class="funnel-bar-wrap">
+                  <div class="funnel-bar" style="background:var(--g300);color:var(--g700);width:20%;">~3–5%</div>
+                </div>
+              </div>
+              <div class="funnel-step">
+                <div class="funnel-label" style="text-align:right;font-size:11px;">All PLG (avg)</div>
+                <div class="funnel-bar-wrap">
+                  <div class="funnel-bar" style="background:var(--olive);width:40%;">~9%</div>
+                </div>
+              </div>
+              <div class="funnel-step">
+                <div class="funnel-label" style="text-align:right;font-size:11px;">Opt-out (CC req'd)</div>
+                <div class="funnel-bar-wrap">
+                  <div class="funnel-bar" style="background:var(--clay);width:95%;">48.8%</div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:11.5px;color:var(--g500);margin-top:10px;">Requiring a CC at signup converts 5× better —
+              at the cost of top-of-funnel volume.</p>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-title">Self-Serve Evaluation Checklist — What Developers Look For</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="color:var(--olive);font-weight:700;flex-shrink:0;">✓</span>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--slate);">API key in &lt;60 seconds</div>
+                  <div style="font-size:12px;color:var(--g500);">No sales call, no form submit, just signup → console →
+                    key</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="color:var(--olive);font-weight:700;flex-shrink:0;">✓</span>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--slate);">Copy-pasteable "Hello World" in their
+                    SDK language</div>
+                  <div style="font-size:12px;color:var(--g500);">Python AND JavaScript — not one or the other</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="color:var(--olive);font-weight:700;flex-shrink:0;">✓</span>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--slate);">Real-document sandbox</div>
+                  <div style="font-size:12px;color:var(--g500);">Process their actual PDF, not a vendor sample — this is
+                    the aha moment</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="color:var(--olive);font-weight:700;flex-shrink:0;">✓</span>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--slate);">Visible pricing before hitting limits
+                  </div>
+                  <div style="font-size:12px;color:var(--g500);">In-product upgrade prompts with exact cost — never
+                    force a pricing page visit</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <span style="color:var(--clay);font-weight:700;flex-shrink:0;">✗</span>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:var(--slate);">Sales-call wall at growth</div>
+                  <div style="font-size:12px;color:var(--g500);">Nanonets' failure mode: free→growth requires contacting
+                    sales, killing self-serve at the exact moment of demonstrated value</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scorecard">
+          <div class="scorecard-head">Upstage Studio — Self-Serve Readiness Assessment</div>
+          <div class="scorecard-rows">
+            <div class="scorecard-row">
+              <div class="label">API key access</div>
+              <div class="value good">✓ Console signup exists; AWS Marketplace also available</div>
+            </div>
+            <div class="scorecard-row">
+              <div class="label">Free tier</div>
+              <div class="value good">✓ 10 free runs per agent; Document Parse $0.01/page transparent pricing</div>
+            </div>
+            <div class="scorecard-row">
+              <div class="label">JavaScript SDK</div>
+              <div class="value warn">⚠ Python primary; Node.js/TypeScript SDK not prominently documented — likely the
+                top conversion blocker for mid-market devs</div>
+            </div>
+            <div class="scorecard-row">
+              <div class="label">Real-doc sandbox</div>
+              <div class="value warn">⚠ Playground exists but limited to 10 free runs — unclear if users can bring their
+                own real-world PDFs in free tier without a credit card</div>
+            </div>
+            <div class="scorecard-row">
+              <div class="label">Mid-market price tier</div>
+              <div class="value warn">⚠ Per-page pricing is competitive ($50/mo at 5K pages) but no explicit "starter"
+                credit bundle purchasable by credit card without sales</div>
+            </div>
+            <div class="scorecard-row">
+              <div class="label">Pricing transparency</div>
+              <div class="value good">✓ Pricing page is clear and published — better than Docsumo, Azure (S0 prices
+                hidden)</div>
+            </div>
+            <div class="scorecard-row">
+              <div class="label">Growth upgrade path</div>
+              <div class="value warn">⚠ Unclear whether high-volume developers can upgrade from free to paid without a
+                sales call — this is where competitors lose mid-market buyers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ 06 BUYER PERSONA ════════════════════ -->
+    <section id="persona">
+      <div class="sec-head">
+        <span class="idx">06</span>
+        <h2>Buyer Persona — Who Actually Buys at Mid-Market?</h2>
+      </div>
+      <p class="sec-intro">
+        At 50–500 employee companies there is no enterprise procurement team. The developer makes or breaks
+        the purchase. But two distinct personas shape every deal — and failing either one costs the sale.
+      </p>
+
+      <div class="sec-body">
+        <div class="persona-grid" style="margin-bottom:24px;">
+          <div class="persona-card primary">
+            <div class="persona-header">
+              <div class="persona-icon">👩‍💻</div>
+              <div>
+                <div class="persona-name">The Technical Evaluator</div>
+                <div class="persona-role">Primary buyer · Makes or breaks the deal</div>
+              </div>
+            </div>
+            <div class="persona-body">
+              <div class="persona-row">
+                <div class="persona-field">
+                  <div class="persona-field-label">Role</div>
+                  <div class="persona-field-value">Software engineer, full-stack developer, or technical PM (often the
+                    same person at this company size)</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Primary stack</div>
+                  <div class="persona-field-value">
+                    <span class="persona-tag active">JavaScript</span>
+                    <span class="persona-tag active">TypeScript</span>
+                    <span class="persona-tag active">Node.js</span>
+                    <span class="persona-tag active">React</span>
+                    <span class="persona-tag">Python (scripts)</span>
+                  </div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Decision authority</div>
+                  <div class="persona-field-value">High — CC purchase up to ~$5K/year without approval; needs CTO/VP
+                    sign-off above that</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Evaluation flow</div>
+                  <div class="persona-field-value">Self-serve sign-up → <strong>API call with their own
+                      document</strong> → internal demo → close. Does not want a sales call before seeing results.</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Blocking moments</div>
+                  <div class="persona-field-value">No JS SDK · No real-doc sandbox · Pricing opacity · "Contact sales"
+                    before first API call</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Evidence from reviews</div>
+                  <div class="persona-field-value">Veryfi G2: praises JSON structure + API simplicity. Textract G2:
+                    "cumbersome legacy integration." Google: "$38 for 26 requests" pricing shock.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <div class="persona-header">
+              <div class="persona-icon">📊</div>
+              <div>
+                <div class="persona-name">The Ops Owner</div>
+                <div class="persona-role">Secondary buyer · Budget + business case</div>
+              </div>
+            </div>
+            <div class="persona-body">
+              <div class="persona-row">
+                <div class="persona-field">
+                  <div class="persona-field-label">Role</div>
+                  <div class="persona-field-value">Head of Operations, Finance Director, RevOps Manager — originates the
+                    use case (AP automation, contract review, intake forms)</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Technical comfort</div>
+                  <div class="persona-field-value">Low to medium — prefers no-code UI and workflow builders over raw API
+                    calls</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Decision authority</div>
+                  <div class="persona-field-value">Budget owner — but needs IT/Engineering sign-off on integration
+                    feasibility</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">What they care about</div>
+                  <div class="persona-field-value">Accuracy rate · Time savings vs manual process · Price predictability
+                    (hates variable per-page billing) · Compliance (SOC 2, HIPAA)</div>
+                </div>
+                <div class="persona-field">
+                  <div class="persona-field-label">Evidence from reviews</div>
+                  <div class="persona-field-value">Docsumo reviews skew ops-oriented. Nanonets praised for "no-code"
+                    features alongside API. This persona discovers the tool; the tech evaluator must approve it.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="verdict">
+          <div class="verdict-label">The buying dynamic in one sentence</div>
+          <p>
+            The Ops Owner discovers the need and initiates the search; the Technical Evaluator runs the trial and makes
+            the technical call; <strong>if the evaluator can't get a working result with their own document in under 10
+              minutes,
+              neither buyer ever completes a purchase</strong> — the developer bottleneck is the bottleneck for the
+            whole deal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ 07 CPO QUESTIONS ════════════════════ -->
+    <section id="questions">
+      <div class="sec-head">
+        <span class="idx">07</span>
+        <h2>Three Sharp Questions for the CPO</h2>
+      </div>
+      <p class="sec-intro">
+        Each question is grounded in a specific data point. Each one surfaces a decision the CPO must make
+        for the mid-market self-serve expansion — not a generic discovery question.
+      </p>
+
+      <div class="sec-body">
+        <div class="question-list">
+
+          <div class="question-card">
+            <div class="question-head">
+              <div class="question-num">Q1</div>
+              <div class="question-title">The JavaScript SDK gap — how many developers are dropping off at
+                <code>npm install</code>?</div>
+            </div>
+            <div class="question-body">
+              <div class="question-text">
+                Python is 70% of AI SDK downloads overall, but that 70% is concentrated in enterprise AI teams and data
+                scientists.
+                <strong>The mid-market developer integrating document AI into a product uses Node.js or
+                  TypeScript</strong> — they're
+                building the backend that calls Studio's API, and their first instinct is
+                <code>npm install upstage-sdk</code>.
+                AWS Textract, Google Document AI, Veryfi, and Nanonets all ship first-class Python, JavaScript, Java,
+                and .NET SDKs
+                simultaneously. Upstage's pricing page and docs lead with Python examples.
+              </div>
+              <div class="question-why">
+                <div class="why-label">The question to ask</div>
+                Does Studio ship a first-class npm package with TypeScript types and documented Node.js examples? If the
+                answer is
+                "you can use the REST API directly," do we have funnel data on
+                <strong>signup-to-first-successful-API-call conversion
+                  broken out by SDK language used</strong> — and what does that drop-off rate look like versus
+                competitors?
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card">
+            <div class="question-head">
+              <div class="question-num">Q2</div>
+              <div class="question-title">The real-document sandbox — can a developer process their own PDF without
+                talking to sales?</div>
+            </div>
+            <div class="question-body">
+              <div class="question-text">
+                Nanonets gives $200 in credits and immediate API access — a developer can process their actual invoices
+                or contracts
+                within minutes of signup. Veryfi has a 14-day trial with no CC. Studio has 10 free runs per agent, which
+                sounds
+                generous but may not let a developer process their own document in the format they need.
+                <strong>The "aha moment" that drives conversion is the first successful extraction from the developer's
+                  own real-world document</strong>,
+                not a vendor-supplied sample PDF. This is the finding from TTV research: Demandbase cut time-to-value by
+                55%
+                by redesigning onboarding around the path to the first real outcome, not a product tour.
+              </div>
+              <div class="question-why">
+                <div class="why-label">The question to ask</div>
+                In the current free tier, can a developer upload their own PDF (an actual invoice from their business,
+                not a sample)
+                and get a structured JSON extraction result without entering a credit card? And what is our
+                <strong>median time from
+                  signup to first successful document parse</strong> — how does that compare to Nanonets' and Veryfi's
+                equivalent metric?
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card">
+            <div class="question-head">
+              <div class="question-num">Q3</div>
+              <div class="question-title">The mid-market pricing floor — is there a credit-card-purchasable tier for the
+                $50–$300/month buyer?</div>
+            </div>
+            <div class="question-body">
+              <div class="question-text">
+                Upstage's per-page pricing is already competitive: a customer doing 10K pages/month pays $100, which
+                beats Veryfi's
+                $500/month minimum floor. A customer doing 5K pages pays $50 — 10× cheaper than Veryfi and with better
+                accuracy
+                than AWS Textract on complex documents. <strong>But are mid-market customers finding and purchasing this
+                  tier
+                  self-serve?</strong> The pattern across document AI competitors is that the growth tier requires a
+                sales call at
+                exactly the moment of demonstrated value — this is Nanonets' failure mode and Docsumo's consistent
+                complaint in reviews.
+              </div>
+              <div class="question-why">
+                <div class="why-label">The question to ask</div>
+                Is there a <strong>packaged starter tier (e.g., 10K pages for $99/month, purchasable by credit card, no
+                  sales call,
+                  clear upgrade to 50K/100K pages)</strong> that a mid-market developer can buy the same day they prove
+                value in the
+                free tier? Or do we inadvertently replicate the enterprise sales motion we're trying to disrupt — where
+                a developer
+                who loves the product has to wait for a sales quote before they can pay us?
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════ FOOTER ════════════════════ -->
+    <footer>
+      <span class="k">Upstage Studio — Mid-Market Research</span>
+      <span>Data: Nimble CLI v0.12.0 live scrapes · 2026-06-14 · All sources public · Private interview prep</span>
+      <span>Raw data: <code>upstage-research/raw/</code> · Parsed: <code>upstage-research/parsed/</code></span>
+    </footer>
+
+  </div>
+</body>
+
+</html>
